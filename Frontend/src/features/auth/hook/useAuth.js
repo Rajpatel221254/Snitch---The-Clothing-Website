@@ -17,7 +17,7 @@ export const useAuth = () => {
       const response = await register({ email, contact, password, fullname, isSeller });
       dispatch(setUser(response.user));
     } catch (error) {
-        dispatch(setError(error.response.data.message));
+        dispatch(setError(error));
     }finally{
         dispatch(setLoading(false));
     }
