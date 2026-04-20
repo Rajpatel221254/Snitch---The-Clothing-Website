@@ -71,3 +71,32 @@ export const login = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
+
+export const googleAuthCallback = async (req, res) => {
+  const { id, displayName, emails, photos } = req.user;
+  const email = emails[0].value;
+  const profilePic = photos[0].value;
+
+  let user = await userModel.findOne({ email });
+
+  if (!user) {
+    user = await userModel.create({
+      email,
+      fullname: displayName,
+      googleId: id,
+    });
+  }
+
+
+  const token = jwt.sign(
+    { id: user._id, email: user.email },
+    config.JWT_SECRET,
+    {
+      expiresIn: "1d",
+    },
+  );
+
+  res.cookie("token", token);
+
+  res.redirect("http://localhost:5173"); // Redirect to homepage or dashboard after successful login
+};

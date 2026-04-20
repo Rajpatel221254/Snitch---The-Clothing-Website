@@ -4,6 +4,7 @@ import AuthInput from "../components/AuthInput";
 import AuthButton from "../components/AuthButton";
 import { useAuth } from "../hook/useAuth";
 import { useNavigate } from "react-router";
+import GoogleButton from "../components/GoogleButton";
 
 export default function Login() {
   const { handleLogin } = useAuth();
@@ -19,11 +20,13 @@ export default function Login() {
       return;
     }
     await handleLogin(form);
-    navigate('/')
+    navigate("/");
   };
 
   return (
     <AuthLayout subtitle="Welcome Back">
+      <GoogleButton />
+
       {/* Email */}
       <AuthInput
         label="Email Address"

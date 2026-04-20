@@ -7,19 +7,23 @@ const userSchema = new mongoose.Schema({
     unique: true 
   },
   contact: { type: String, 
-    required: true 
+    required: false 
   },
   fullname: { type: String, 
     required: true 
   },
   password: { type: String, 
-    required: true, 
+    required: false, 
     select: false,
   },
   role: {
     type: String,
     enum: ["buyer", "seller"],
     default: "buyer",
+  },
+  googleId: {
+    type: String,
+    unique: true,
   },
 });
 

@@ -4,6 +4,7 @@ import AuthInput from "../components/AuthInput";
 import AuthButton from "../components/AuthButton";
 import { useAuth } from "../hook/useAuth";
 import { useNavigate } from "react-router";
+import GoogleButton from "../components/GoogleButton";
 
 export default function Register() {
   const { handleRegister } = useAuth();
@@ -26,11 +27,13 @@ export default function Register() {
       return;
     }
     await handleRegister({ ...form, isSeller });
-    navigate('/')
+    navigate("/");
   };
 
   return (
     <AuthLayout subtitle="Create Account">
+      <GoogleButton />
+
       {/* Full Name */}
       <AuthInput
         label="Full Name"
@@ -81,7 +84,7 @@ export default function Register() {
         className="flex items-center gap-3 mb-7 cursor-pointer select-none"
       >
         <div
-          className="w-5 h-5 rounded-[6px] flex-shrink-0 flex items-center justify-center transition-all duration-200"
+          className="w-5 h-5 rounded-md shrink-0 flex items-center justify-center transition-all duration-200"
           style={{
             border: `1.5px solid ${isSeller ? "#FFD700" : "#3a3a3a"}`,
             background: isSeller ? "#FFD700" : "#161616",

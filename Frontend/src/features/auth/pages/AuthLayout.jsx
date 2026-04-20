@@ -13,7 +13,7 @@ export default function AuthLayout({ title, subtitle, children }) {
 
       {/* Right — form panel */}
       <div className="flex-1 flex items-center justify-center px-6 py-12 md:px-14 overflow-y-auto">
-        <div className="w-full max-w-[380px]">
+        <div className="w-full max-w-95">
 
           {/* Brand logo */}
           <div className="text-center mb-10">

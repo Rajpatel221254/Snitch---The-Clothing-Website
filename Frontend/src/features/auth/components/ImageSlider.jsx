@@ -32,7 +32,7 @@ export default function ImageSlider() {
   };
 
   return (
-    <div className="hidden md:block w-1/2 relative overflow-hidden flex-shrink-0">
+    <div className="hidden md:block w-1/2 relative overflow-hidden shrink-0">
       {/* Slides */}
       {slides.map((s, i) => (
         <div
@@ -46,7 +46,7 @@ export default function ImageSlider() {
       ))}
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-black/10" />
 
       {/* Brand copy */}
       <div className="absolute bottom-10 left-10 right-10">
@@ -57,7 +57,7 @@ export default function ImageSlider() {
           Snitch
         </h1>
         <p
-          className="text-[15px] font-light text-white/75 leading-relaxed max-w-[300px] mb-6 transition-all duration-500"
+          className="text-[15px] font-light text-white/75 leading-relaxed max-w-75 mb-6 transition-all duration-500"
           style={{
             opacity: taglineVisible ? 1 : 0,
             transform: taglineVisible ? "translateY(0)" : "translateY(8px)",
@@ -73,7 +73,7 @@ export default function ImageSlider() {
               key={i}
               type="button"
               onClick={() => goSlide(i)}
-              className="h-[6px] rounded-[3px] transition-all duration-300 border-none cursor-pointer"
+              className="h-1.5 rounded-[3px] transition-all duration-300 border-none cursor-pointer"
               style={{
                 width: i === curSlide ? "24px" : "6px",
                 background:
