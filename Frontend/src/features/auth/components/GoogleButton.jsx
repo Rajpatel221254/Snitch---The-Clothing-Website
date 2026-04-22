@@ -6,7 +6,7 @@ const GoogleButton = () => {
       href="/api/auth/google"
       class="mb-5 flex items-center justify-center gap-3 w-full px-4 py-2.5 border border-gray-300 rounded-lg bg-white text-gray-700 font-medium shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition"
     >
-      <svg class="w-5 h-5" viewBox="0 0 48 48">
+      <svg className="w-5 h-5" viewBox="0 0 48 48">
         <path
           fill="#EA4335"
           d="M24 9.5c3.9 0 6.5 1.7 8 3.1l5.9-5.9C34.4 3.3 29.7 1 24 1 14.6 1 6.6 6.8 2.8 14.3l6.9 5.4C11.8 13.3 17.4 9.5 24 9.5z"

@@ -7,6 +7,6 @@ export const connectToDB = async () => {
 
     console.log("Database is connected");
   } catch (err) {
-    throw new error(err.message);
+    throw new Error(err.message);
   }
 };
