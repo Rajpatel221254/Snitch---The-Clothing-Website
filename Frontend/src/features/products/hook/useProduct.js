@@ -1,6 +1,6 @@
-import { createProduct, deleteProduct, editProduct, getProductById, getSellerProducts } from "../services/product.api";
+import { createProduct, deleteProduct, editProduct, getAllProduct, getProductById, getSellerProducts } from "../services/product.api";
 import { useDispatch } from "react-redux";
-import { seterror, setloading, setProducts } from "../state/product.slice";
+import { seterror, setloading, setSellerProducts, setProducts } from "../state/product.slice";
 
 export const useProduct = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export const useProduct = () => {
     dispatch(setloading(true));
     try{
       const response = await getSellerProducts();
-      dispatch(setProducts(response.products));
+      dispatch(setSellerProducts(response.products));
       return response;
     } catch (error) {
       dispatch(seterror(error.message));
@@ -38,11 +38,25 @@ export const useProduct = () => {
     return response
   }
 
+  const handleGetAllProducts = async () => {
+    dispatch(setloading(true));
+    try{
+      const response = await getAllProduct();
+      dispatch(setProducts(response.products));
+      return response;
+    } catch (error) {
+      dispatch(seterror(error.message));
+    } finally {
+      dispatch(setloading(false));
+    }
+  }
+
   return {
     handleCreateProduct,
     handleGetSellerProducts,
     handleDeleteProduct,
     handleEditProduct,
-    handleGetProduct
+    handleGetProduct,
+    handleGetAllProducts
   };
 };

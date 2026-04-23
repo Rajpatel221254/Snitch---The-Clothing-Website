@@ -87,7 +87,6 @@ export const googleAuthCallback = async (req, res) => {
     });
   }
 
-
   const token = jwt.sign(
     { id: user._id, email: user.email },
     config.JWT_SECRET,
@@ -99,4 +98,20 @@ export const googleAuthCallback = async (req, res) => {
   res.cookie("token", token);
 
   res.redirect("http://localhost:5173"); // Redirect to homepage or dashboard after successful login
+};
+
+export const getMe = (req, res) => {
+  const user = req.user;
+
+  res.status(200).json({
+    message: "User fetched succesfully",
+    success: true,
+    user: {
+      id: user._id,
+      email: user.email,
+      contact: user.contact,
+      role: user.role,
+      fullname: user.fullname,
+    },
+  });
 };

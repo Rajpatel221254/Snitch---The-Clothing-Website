@@ -1,6 +1,6 @@
 import express from "express";
-import { authenticateSeller } from "../middleware/auth.middleware.js";
-import { createProduct, deleteProduct, editProduct, getProduct, getSellerProducts } from "../controller/product.controller.js";
+import { authenticateSeller, authenticateUser } from "../middleware/auth.middleware.js";
+import { createProduct, getAllProduct,deleteProduct, editProduct, getProduct, getSellerProducts } from "../controller/product.controller.js";
 import multer from "multer";
 import { validateCreateProduct } from "../validators/product.validator.js";
 
@@ -18,6 +18,13 @@ const router = express.Router();
 * @access Private (Seller only)
 */
 router.post("/", authenticateSeller, upload.array("images", 7),validateCreateProduct, createProduct);
+
+/**
+ * @route GET /api/products
+ * @desc Get all products
+ * @access Public 
+ */
+router.get('/', getAllProduct)
 
 /**
 * @route GET /api/products/seller
@@ -45,6 +52,6 @@ router.put('/edit/:id', upload.array('images',7),authenticateSeller , editProduc
  * @desc Get product by ID
  * @access Private (Seller only)
  */
-router.get('/get/:id', authenticateSeller, getProduct)
+router.get('/get/:id', getProduct)
 
 export default router;

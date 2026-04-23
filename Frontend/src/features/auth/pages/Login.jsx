@@ -19,8 +19,14 @@ export default function Login() {
       alert("Please fill all fields.");
       return;
     }
-    await handleLogin(form);
-    navigate("/");
+    const user = await handleLogin(form);
+
+    console.log(user);
+    if (user.role == "buyer") {
+      navigate("/");
+    } else if (user.role == "seller") {
+      navigate("/seller/dashboard");
+    }
   };
 
   return (

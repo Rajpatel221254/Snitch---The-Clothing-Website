@@ -6,11 +6,19 @@ import CreateProduct from "../features/products/pages/CreateProduct.jsx";
 import SellerDashboard from "../features/products/pages/SellerDashboard.jsx";
 import DashboardPage from "../features/products/pages/DashboardPage.jsx";
 import EditProductPage from "../features/products/pages/EditProductPage.jsx";
+import Protected from "../features/auth/components/Protected.jsx";
+import Home from "../features/products/pages/Home.jsx";
+import ProductDetails from "../features/products/pages/ProductDetails.jsx";
+import Products from "../features/products/pages/Products.jsx";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Welcome to the App</h1>,
+    element: <Home />,
+  },
+  {
+    path: "/product/:id",
+    element: <ProductDetails />,
   },
   {
     path: "/register",
@@ -21,19 +29,23 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: '/products',
+    element: <Products />
+  },
+  {
     path: "/seller",
     children: [
       {
         path: 'dashboard',
-        element: <DashboardPage />
+        element: <Protected role="seller"><DashboardPage /></Protected>
       },
       {
         path: "create-product",
-        element: <CreateProduct />
+        element: <Protected role="seller"><CreateProduct /></Protected>
       },
       {
         path: 'edit/:id',
-        element: <EditProductPage />
+        element: <Protected role="seller"><EditProductPage /></Protected>
       },
     ]
   }

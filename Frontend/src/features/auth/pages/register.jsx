@@ -26,8 +26,13 @@ export default function Register() {
       alert("Please fill all fields.");
       return;
     }
-    await handleRegister({ ...form, isSeller });
-    navigate("/");
+    const user = await handleRegister({ ...form, isSeller });
+    console.log(user);
+    if (user.role == "buyer") {
+      navigate("/dashboard");
+    } else if (user.role == "seller") {
+      navigate("/seller/dashboard");
+    }
   };
 
   return (

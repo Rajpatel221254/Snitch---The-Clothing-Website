@@ -67,13 +67,16 @@ export const editProduct = async (req, res) => {
   const { id: productId } = req.params;
   const { title, description, priceAmount, priceCurrency } = req.body;
 
-  const product = await productModel.findOne({ seller: sellerId, _id: productId });
+  const product = await productModel.findOne({
+    seller: sellerId,
+    _id: productId,
+  });
 
   const images = req.files?.length
     ? await Promise.all(
-        req.files.map(file =>
-          uploadImage({ buffer: file.buffer, fileName: file.originalname })
-        )
+        req.files.map((file) =>
+          uploadImage({ buffer: file.buffer, fileName: file.originalname }),
+        ),
       )
     : product.images;
 
@@ -95,21 +98,31 @@ export const editProduct = async (req, res) => {
   });
 };
 
-export const getProduct = async (req,res) => {
-  const productId = req.params.id
+export const getProduct = async (req, res) => {
+  const productId = req.params.id;
 
-  const product = await productModel.findById(productId)
+  const product = await productModel.findById(productId);
 
-  if(!product){
+  if (!product) {
     return res.status(404).json({
       message: "Product not found",
-      success: false
-    })
+      success: false,
+    });
   }
 
   res.status(200).json({
     message: "Product Fetch succesfully",
     product,
-    sucess: true
-  })
+    sucess: true,
+  });
+};
+
+export async function getAllProduct(req, res) {
+  const products = await productModel.find();
+
+  res.status(200).json({
+    message: "Products fetched succesfully",
+    products,
+    success: true,
+  });
 }
