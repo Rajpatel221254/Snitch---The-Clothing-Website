@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import {useNavigate } from 'react-router'
+import { useNavigate } from "react-router";
 import ProductCard from "../components/ProductCard.jsx";
 import DashboardStats from "../components/DashboardStats.jsx";
 
@@ -25,7 +25,6 @@ function SkeletonCard() {
         <div className="h-2.5 bg-[#1e1e1e] rounded-full w-2/3" />
         <div className="h-6 bg-[#1e1e1e] rounded-full w-1/3 mt-1" />
         <div className="h-9 bg-[#1e1e1e] rounded-lg mt-2" />
-
       </div>
     </div>
   );
@@ -39,13 +38,36 @@ function EmptyState({ filtered }) {
         {filtered ? (
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
             <circle cx="11" cy="11" r="7" stroke="#FFD700" strokeWidth="1.8" />
-            <path d="M16.5 16.5L21 21" stroke="#FFD700" strokeWidth="1.8" strokeLinecap="round" />
-            <path d="M8 11H14M11 8V14" stroke="#FFD700" strokeWidth="1.6" strokeLinecap="round" />
+            <path
+              d="M16.5 16.5L21 21"
+              stroke="#FFD700"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+            <path
+              d="M8 11H14M11 8V14"
+              stroke="#FFD700"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
           </svg>
         ) : (
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="3" width="18" height="18" rx="3" stroke="#FFD700" strokeWidth="1.8" />
-            <path d="M12 8V16M8 12H16" stroke="#FFD700" strokeWidth="1.8" strokeLinecap="round" />
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="3"
+              stroke="#FFD700"
+              strokeWidth="1.8"
+            />
+            <path
+              d="M12 8V16M8 12H16"
+              stroke="#FFD700"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
           </svg>
         )}
       </div>
@@ -80,9 +102,10 @@ function Pill({ label, active, onClick }) {
       className={`
         px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-[1px]
         border transition-all duration-200 cursor-pointer whitespace-nowrap
-        ${active
-          ? "bg-[#FFD700] border-[#FFD700] text-[#0f0f0f]"
-          : "bg-transparent border-[#272727] text-white/30 hover:border-[#FFD700]/35 hover:text-white/55"
+        ${
+          active
+            ? "bg-[#FFD700] border-[#FFD700] text-[#0f0f0f]"
+            : "bg-transparent border-[#272727] text-white/30 hover:border-[#FFD700]/35 hover:text-white/55"
         }
       `}
     >
@@ -117,7 +140,7 @@ export default function SellerDashboard({
       list = list.filter(
         (p) =>
           p.title?.toLowerCase().includes(q) ||
-          p.description?.toLowerCase().includes(q)
+          p.description?.toLowerCase().includes(q),
       );
     }
 
@@ -138,10 +161,9 @@ export default function SellerDashboard({
 
   const isFiltered = search.trim().length > 0;
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-
     <div
       className="min-h-screen bg-[#0f0f0f] text-white"
       style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -170,7 +192,12 @@ export default function SellerDashboard({
           className="shrink-0 flex items-center gap-2 px-4 py-2 bg-[#FFD700] hover:bg-[#e6c200] active:scale-[0.975] rounded-[9px] text-[12px] font-bold text-[#0f0f0f] uppercase tracking-[1.5px] transition-all duration-200 no-underline"
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M6 1V11M1 6H11" stroke="#0f0f0f" strokeWidth="2" strokeLinecap="round" />
+            <path
+              d="M6 1V11M1 6H11"
+              stroke="#0f0f0f"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
           </svg>
           <span className="hidden sm:inline">New Product</span>
           <span className="sm:hidden">New</span>
@@ -179,7 +206,6 @@ export default function SellerDashboard({
 
       {/* ── Page content ── */}
       <div className="max-w-6xl mx-auto px-5 md:px-10 py-10">
-
         {/* Page header */}
         <div className="mb-8">
           <p className="text-[10px] font-bold tracking-[4px] text-[#FFD700]/55 uppercase mb-2">
@@ -209,8 +235,19 @@ export default function SellerDashboard({
               viewBox="0 0 24 24"
               fill="none"
             >
-              <circle cx="11" cy="11" r="7" stroke="rgba(255,255,255,0.25)" strokeWidth="2" />
-              <path d="M16.5 16.5L21 21" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" />
+              <circle
+                cx="11"
+                cy="11"
+                r="7"
+                stroke="rgba(255,255,255,0.25)"
+                strokeWidth="2"
+              />
+              <path
+                d="M16.5 16.5L21 21"
+                stroke="rgba(255,255,255,0.25)"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
             </svg>
             <input
               type="text"
@@ -226,7 +263,12 @@ export default function SellerDashboard({
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/60 transition-colors cursor-pointer bg-transparent border-none"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M2 2L12 12M12 2L2 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  <path
+                    d="M2 2L12 12M12 2L2 12"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             )}
@@ -240,16 +282,29 @@ export default function SellerDashboard({
               className="appearance-none bg-[#141414] border border-[#242424] rounded-[10px] px-4 py-2.5 pr-9 text-sm text-white/55 outline-none cursor-pointer focus:border-[#FFD700]/50 transition-all duration-200 w-full sm:w-auto"
             >
               {SORT_OPTIONS.map((o) => (
-                <option key={o.value} value={o.value} style={{ background: "#1a1a1a" }}>
+                <option
+                  key={o.value}
+                  value={o.value}
+                  style={{ background: "#1a1a1a" }}
+                >
                   {o.label}
                 </option>
               ))}
             </select>
             <svg
               className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
-              width="12" height="12" viewBox="0 0 12 12" fill="none"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
             >
-              <path d="M2 4L6 8L10 4" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M2 4L6 8L10 4"
+                stroke="rgba(255,255,255,0.3)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
         </div>
@@ -267,8 +322,19 @@ export default function SellerDashboard({
           <div className="flex flex-col items-center justify-center py-24 gap-4">
             <div className="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="9" stroke="#f87171" strokeWidth="1.8" />
-                <path d="M12 8V12M12 16H12.01" stroke="#f87171" strokeWidth="2" strokeLinecap="round" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="#f87171"
+                  strokeWidth="1.8"
+                />
+                <path
+                  d="M12 8V12M12 16H12.01"
+                  stroke="#f87171"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </div>
             <p className="text-[14px] text-white/40 text-center">{error}</p>
@@ -285,20 +351,24 @@ export default function SellerDashboard({
         {/* ── Product grid ── */}
         {!error && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {loading
-              ? Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
-              : displayed.length === 0
-              ? <EmptyState filtered={isFiltered} />
-              : displayed.map((product) => (
-                  <ProductCard
-                    key={product._id}
-                    product={product}
-                    onDelete={onDelete}
-                    onRefetch= {onRefetch}
-                    onEdit={(id) => navigate(`/seller/edit/${id}`)}
-                  />
-                ))
-            }
+            {loading ? (
+              Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
+            ) : displayed.length === 0 ? (
+              <EmptyState filtered={isFiltered} />
+            ) : (
+              displayed.map((product) => (
+                <ProductCard
+                  key={product._id}
+                  product={product}
+                  onDelete={onDelete}
+                  onRefetch={onRefetch}
+                  onclick={() => {
+                    navigate(`/seller/product/${product._id}`);
+                  }}
+                  onEdit={(id) => navigate(`/seller/edit/${id}`)}
+                />
+              ))
+            )}
           </div>
         )}
       </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function timeAgo(dateStr) {
   if (!dateStr) return "";
@@ -24,7 +25,7 @@ function formatPrice(amount, currency) {
   }
 }
 
-export default function ProductCard({ product, onDelete, onEdit, onRefetch }) {
+export default function ProductCard({ product, onDelete, onEdit, onRefetch, onclick }) {
   const [imgIdx, setImgIdx] = useState(0);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -41,13 +42,15 @@ export default function ProductCard({ product, onDelete, onEdit, onRefetch }) {
     }
     setDeleting(true);
     await onDelete?.(product._id);
-    await onRefetch()
+    await onRefetch();
     setDeleting(false);
   };
 
   return (
-    <div className="group flex flex-col bg-[#141414] border border-[#1e1e1e] rounded-[14px] overflow-hidden hover:border-[#2e2e2e] transition-all duration-300">
-
+    <div
+      onClick={onclick}
+      className="group flex flex-col bg-[#141414] border border-[#1e1e1e] rounded-[14px] overflow-hidden hover:border-[#2e2e2e] transition-all duration-300"
+    >
       {/* ── Image area ── */}
       <div className="relative h-52 bg-[#1a1a1a] overflow-hidden flex-shrink-0">
         {coverUrl ? (
@@ -59,11 +62,33 @@ export default function ProductCard({ product, onDelete, onEdit, onRefetch }) {
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-white/10">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="1.4" />
-              <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="1.4" />
-              <path d="M3 15L8 10L11 13L15 9L21 15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+              <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="3"
+                stroke="currentColor"
+                strokeWidth="1.4"
+              />
+              <circle
+                cx="8.5"
+                cy="8.5"
+                r="1.5"
+                stroke="currentColor"
+                strokeWidth="1.4"
+              />
+              <path
+                d="M3 15L8 10L11 13L15 9L21 15"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
-            <span className="text-[10px] uppercase tracking-wider">No Image</span>
+            <span className="text-[10px] uppercase tracking-wider">
+              No Image
+            </span>
           </div>
         )}
 
@@ -79,7 +104,8 @@ export default function ProductCard({ product, onDelete, onEdit, onRefetch }) {
                 style={{
                   width: i === imgIdx ? "16px" : "6px",
                   height: "6px",
-                  background: i === imgIdx ? "#FFD700" : "rgba(255,255,255,0.35)",
+                  background:
+                    i === imgIdx ? "#FFD700" : "rgba(255,255,255,0.35)",
                 }}
               />
             ))}
@@ -96,7 +122,6 @@ export default function ProductCard({ product, onDelete, onEdit, onRefetch }) {
 
       {/* ── Body ── */}
       <div className="flex flex-col flex-1 p-4">
-
         {/* Title */}
         <h3 className="text-[14px] font-semibold text-white leading-snug line-clamp-1 mb-1.5">
           {product.title}
@@ -139,9 +164,10 @@ export default function ProductCard({ product, onDelete, onEdit, onRefetch }) {
             disabled={deleting}
             className={`
               flex-1 py-2 text-[11px] font-semibold uppercase tracking-[1px] rounded-[8px] border transition-all duration-200 cursor-pointer
-              ${confirmDelete
-                ? "bg-red-500/15 border-red-500/40 text-red-400"
-                : "bg-transparent border-[#2a2a2a] text-white/28 hover:border-red-500/40 hover:text-red-400"
+              ${
+                confirmDelete
+                  ? "bg-red-500/15 border-red-500/40 text-red-400"
+                  : "bg-transparent border-[#2a2a2a] text-white/28 hover:border-red-500/40 hover:text-red-400"
               }
             `}
           >

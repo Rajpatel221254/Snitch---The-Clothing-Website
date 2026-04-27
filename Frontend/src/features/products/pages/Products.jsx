@@ -80,7 +80,7 @@ export default function Products() {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
       `}</style>
 
-      <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-8">
+      <div className="max-w-400 mx-auto px-6 lg:px-12 py-8">
         {/* ── Top Controls ── */}
         <div className="mb-8 space-y-4">
           {/* Search + Sort */}
@@ -214,7 +214,7 @@ export default function Products() {
                         }`}
                       >
                         {priceRange === option.value && (
-                          <div className="w-2 h-2 bg-[#0f0f0f] rounded-full mx-auto mt-[5px]" />
+                          <div className="w-2 h-2 bg-[#0f0f0f] rounded-full mx-auto mt-1.25" />
                         )}
                       </div>
                     </div>

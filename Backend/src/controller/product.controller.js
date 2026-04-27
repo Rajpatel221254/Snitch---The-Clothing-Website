@@ -126,3 +126,53 @@ export async function getAllProduct(req, res) {
     success: true,
   });
 }
+
+export async function createVariant(req, res) {
+  const productId = req.params.id;
+  const seller = req.user;
+
+  const stock = Number(req.body.stock);
+  const attributes = JSON.parse(req.body.attributes);
+  const price = JSON.parse(req.body.price);
+  price.amount = Number(price.amount);
+
+  const files = req.files;
+
+  const product = await productModel.findOne({
+    _id: productId,
+    seller: seller._id,
+  });
+
+  if (!product) {
+    return res.status(404).json({ message: "Product not found" });
+  }
+
+  let images = [];
+
+  if (files && files.length > 0) {
+    images = await Promise.all(
+      files.map((file) =>
+        uploadImage({
+          buffer: file.buffer,
+          fileName: file.originalname,
+        }),
+      ),
+    );
+  }
+
+  console.log(stock, attributes, price);
+
+  product.variants.push({
+    images,
+    price,
+    stock,
+    attributes,
+  });
+
+  await product.save();
+
+  res.status(200).json({
+    message: "Variant Created Succesfully",
+    product,
+  });
+}

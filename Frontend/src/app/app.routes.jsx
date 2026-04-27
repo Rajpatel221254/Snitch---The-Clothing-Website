@@ -10,6 +10,7 @@ import Protected from "../features/auth/components/Protected.jsx";
 import Home from "../features/products/pages/Home.jsx";
 import ProductDetails from "../features/products/pages/ProductDetails.jsx";
 import Products from "../features/products/pages/Products.jsx";
+import SellerProductDetails from "../features/products/pages/SellerProductDetails.jsx";
 
 export const routes = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const routes = createBrowserRouter([
         path: 'edit/:id',
         element: <Protected role="seller"><EditProductPage /></Protected>
       },
+      {
+        path: "product/:id",
+        element: <Protected role="seller"><SellerProductDetails /></Protected>
+      }
     ]
   }
 ]);
